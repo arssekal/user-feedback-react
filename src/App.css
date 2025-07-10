@@ -3,9 +3,23 @@
 }
 
 .body {
-  margin: 20px auto;
-  width: 70%;
-  justify-content: center;
-  display: flex;
-  gap: 20px;
+  margin: 0;
+  background-color: rgb(0, 3, 34);
+  min-height: 100vh;
+}
+.iconButton {
+  transition: all 0.3s !important;
+  width: 50px;
+  height: 50px;
+}
+/* .iconButton:hover {
+  background-color: white !important;
+} */
+.taskCard {
+  transition: all 0.3s !important;
+}
+.taskCard:hover {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: 0px 8px 8px #555555d7;
 }
