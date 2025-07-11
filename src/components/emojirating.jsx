@@ -4,7 +4,6 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import '../styleComponents/emoji.css';
 import { useNavigate } from 'react-router-dom';
 import { UserInformationContext } from '../contexts/userInfoInfo';
-import { v4 as uuidv4 } from 'uuid';
 
 function EmojiCard({ text, src, isSelected, onClick }) {
   const playerRef = useRef(null);
@@ -107,7 +106,7 @@ function EmojiRatingPage() {
     if(storedData) {
       setUserInformations(storedData)
     }
-  }, [])
+  }, [setUserInformations])
 
   const handleClick = () => {
     setLoading(true);

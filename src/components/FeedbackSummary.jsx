@@ -16,7 +16,7 @@ const FeedbackSummary = () => {
     if(storedData) {
       setUserInformations(storedData)
     }
-  }, [])
+  }, [setUserInformations])
   
   // ✅ This will take the user to /rating
   const handleSubmitAnother = () => {
