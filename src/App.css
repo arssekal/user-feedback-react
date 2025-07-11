@@ -1,25 +1,21 @@
 * {
-  margin: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.body {
-  margin: 0;
-  background-color: rgb(0, 3, 34);
-  min-height: 100vh;
-}
-.iconButton {
-  transition: all 0.3s !important;
-  width: 50px;
-  height: 50px;
-}
-/* .iconButton:hover {
-  background-color: white !important;
-} */
-.taskCard {
-  transition: all 0.3s !important;
-}
-.taskCard:hover {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  box-shadow: 0px 8px 8px #555555d7;
+.container {
+  width: 100%;
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  box-sizing: border-box;
+  background-image: url('../public/background2.jpg');
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat;
+  width: 100vw;                
+  height: 100vh; 
+  position: relative;
 }

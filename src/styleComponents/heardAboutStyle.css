@@ -1,0 +1,102 @@
+.about {
+    background-color: rgba(233, 227, 210, 0.904); /* Semi-transparent for better readability */
+    border: 1px solid #acc1e9;
+    padding: 30px;
+    border-radius: 10px;
+    /*my fixes*/
+    max-height: 90vh;
+    overflow: scroll;
+    /* Add shadow for better visibility over background image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.486);
+}
+
+@media (max-width: 600px) {
+    .about {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+.about .title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-display: bold;
+}
+
+.about .title h2 {
+    padding: 20px;
+    color: #d85803; /* Fixed: moved color to h2 specifically */
+    font-size: 35px;
+}
+
+.about .title p {
+    color: #000000; 
+    font-weight: bold;
+}
+
+.about .card {
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    background-color: #eee;
+    color: black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.about .card:hover {
+    background-color: #b3e5fc;
+}
+
+.about .card div {
+    display: flex;
+    align-items: center;
+}
+
+.about .card .icon {
+    margin-right: 10px;
+}
+
+.about .card:nth-child(1) .icon {
+    color: #2979ff;
+}
+
+.about .card:nth-child(2) .icon {
+    color: #f44336;
+}
+
+.about .card:nth-child(3) .icon {
+    color: #304ffe;
+}
+
+.about .card:nth-child(4) .icon {
+    color: #6200ea;
+}
+
+.about .card:nth-child(5) .icon {
+    color: #00c853;
+}
+
+.about .card:nth-child(6) .icon {
+    color: #795548;
+}
+
+
+
+.checkbox {
+  color: white !important; /* unchecked */
+}
+
+.checkbox.Mui-checked {
+  color: rgb(250, 216, 187) !important; /* checked */
+}
+
+/* Also target the svg icon inside */
+.checkbox .MuiSvgIcon-root {
+  fill: currentColor !important;
+}

@@ -1,47 +1,52 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import ToDoList from './components/ToDoList';
-import { createTheme, ThemeProvider} from '@mui/material/styles';
-import { TodosContext } from './contexts/todosContext';
+import FeedbackSummary from './components/FeedbackSummary';
+import UserInfo from './components/UserInfo';
+import { UserInformationContext } from './contexts/userInfoInfo';
 import { useState } from 'react';
-import MyAlert from './components/MyAlert';
-import { AlertContext } from './contexts/alertContext';
+import HeardAbout from './components/HeardAbout';
+import EmojiRatingPage from './components/emojirating';
+import Home from './components/Home';
+import Admindashboard from './components/Admindashboard'
+import PrivateRoute from './components/PrivateRoute';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#64dd17',
-    },
-    secondary: {
-      main: '#76ff03',
-    },
-  }
-});
+
+
+const informations = {
+  satisfaction: "xxxx",
+  heardAbout: "xxxx",
+  name: "xxxx",
+  email: "xxxx",
+  phone: "xxxx",
+  date: ""
+}
+
 
 function App() {
-  const [todos, setTodos] = useState([])
-  const [open, setOpen] = useState(false);
-  const [content, setContent] = useState("this is a success message");
-
-
-  function showHideTostAlert(text) {
-    setContent(text)
-    setOpen(true)
-    setTimeout(() => {
-      setOpen(false)
-    }, 3000)
-  }
+  const [userInformations, setUserInformations] = useState(informations)
 
   return (
-    <TodosContext.Provider value={{todos, setTodos}}>
-      <ThemeProvider theme={theme}>
-        <AlertContext.Provider value={{showHideTostAlert}}>
-          <div className='body' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
-            <MyAlert open={open} content={content}/>
-            <ToDoList/>
-          </div>
-        </AlertContext.Provider>
-      </ThemeProvider>
-    </TodosContext.Provider>
+    <UserInformationContext.Provider value={{userInformations, setUserInformations}}>
+    <div className="App">
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/heard-about' element={<HeardAbout/>}/>
+          <Route path='/form-contact' element={<UserInfo/>}/>
+          <Route path='/thankyou' element={<FeedbackSummary/>}/>
+          <Route path='/rating' element={<EmojiRatingPage/>}/>
+          {/* my modification */}
+          <Route path='/admin-dashboard' 
+          element={
+            <PrivateRoute>
+              <Admindashboard/>
+            </PrivateRoute>
+          }
+          />
+        </Routes>
+      </div>
+    </div>
+    </UserInformationContext.Provider>
   );
 }
 
