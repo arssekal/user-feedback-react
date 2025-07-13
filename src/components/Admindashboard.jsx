@@ -140,9 +140,6 @@ function Admindashboard() {
 
   // export csv logic
   function exportToCSV(data) {
-    console.log('*****************')
-    console.log(data)
-    console.log('*****************')
     if (!data || !data.length) {
       alert("No data to export");
       return;
@@ -257,8 +254,8 @@ function Admindashboard() {
                         onChange={handleChange}
                     >
                         <MenuItem value="all">all</MenuItem>
-                        <MenuItem value="liked">liked</MenuItem>
-                        <MenuItem value="not liked">not liked</MenuItem>
+                        <MenuItem value="liked">Positive</MenuItem>
+                        <MenuItem value="not liked">Negative</MenuItem>
                     </Select>
                 </FormControl>
                 <Button variant="outlined" startIcon={<DownloadIcon />}
