@@ -73,6 +73,13 @@
 .dashboard-header h2 {
     padding: 20px 10px;
 }
+/* cahnge */
+@media (max-width: 600px) {
+    .dashboard-header h2 {
+        font-size: 20px;
+        padding: 10px 5px;
+    }
+}
 .holder .cardholder {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;

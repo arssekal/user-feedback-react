@@ -83,6 +83,17 @@ const modal = {
     >
   <Container maxWidth={false}
   className='login-form'
+  /* cahnge */
+  sx={{
+    width: {
+      xs: 'calc(100% - 30px)', 
+      sm: '600px',
+    },
+    mx: {
+      xs: '15px',
+      sm: 'auto',
+    },
+  }}
   >
       <motion.div
           initial={{ opacity: 0, y: -20 }}

@@ -118,7 +118,7 @@ function UserInfo() {
                   fullWidth
                   id="outlined-error"
                   label="name"
-                  value={userInformations.name}
+                  value={userInformations.name === "xxxx" ? "" : userInformations.name}
                   onChange={(e)=> {
                     handleNameChange(e)
                   }}
@@ -138,7 +138,7 @@ function UserInfo() {
                   id="outlined-error"
                   label="email"
                   type='email'
-                  value={userInformations.email}
+                  value={userInformations.email === "xxxx" ? "" : userInformations.email}
                   onChange={(e)=> {
                     handleEmailChange(e)
                   }}
@@ -157,7 +157,7 @@ function UserInfo() {
                   fullWidth
                   id="outlined-error"
                   label="phone"
-                  value={userInformations.phone}
+                  value={userInformations.phone === "xxxx" ? "" : userInformations.phone}
                   // i have to check if the phone number is a valid one
                   onChange={(e)=> {
                     handlePhoneChange(e)

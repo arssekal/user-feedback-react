@@ -140,6 +140,9 @@ function Admindashboard() {
 
   // export csv logic
   function exportToCSV(data) {
+    console.log('*****************')
+    console.log(data)
+    console.log('*****************')
     if (!data || !data.length) {
       alert("No data to export");
       return;
@@ -148,12 +151,13 @@ function Admindashboard() {
     const headers = ["name", "email", "phone", "satisfaction", "heardAbout", "date"];
     const csvRows = [];
   
-    // Ligne des en-têtes séparées par ;
+    // Add CSV header
     csvRows.push(headers.join(';'));
   
     for (const row of data) {
       const values = headers.map(header => {
-        const escaped = ('' + row[header]).replace(/"/g, '\\"');
+        const value = row[header] ?? ''; // Use empty string if value is undefined
+        const escaped = ('' + value).replace(/"/g, '\\"');
         return `"${escaped}"`;
       });
       csvRows.push(values.join(';'));
@@ -170,13 +174,14 @@ function Admindashboard() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-  }
+   }  
+  
   
 
   return (
     <div className='holder'>
         <Container maxWidth="lg" className='dashboard-header'>
-            <h2>Customer Feedback Dashboard</h2>
+            <h2>Feedback Dashboard</h2>
             <Stack style={{backgroundColor: isLogOut ? "#e5e7eb": null}} spacing={2} className='stack-admin' direction="row"
             onClick={() => {
                 setisLogOut(!isLogOut)
