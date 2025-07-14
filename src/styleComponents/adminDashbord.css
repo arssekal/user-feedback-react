@@ -170,6 +170,22 @@
     max-width: 100%;
     color: black;
 }
+/* cahnge */
+@media (max-width: 600px) {
+    .customers .customer-feedback {
+        width: calc(100% - 10px);
+        margin: 0 5px;
+        background-color: yellow;
+    }
+    .formControll {
+        width: 90px;
+        min-width: fit-content;
+    }
+    .customers .customer-feedback h2 {
+        font-size: 18px;
+    }
+
+}
 .customers div:first-of-type {
     display: flex;
     justify-content: space-between;

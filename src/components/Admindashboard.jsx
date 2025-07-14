@@ -236,12 +236,21 @@ function Admindashboard() {
                 </div>
             </div>
         </Container>
-        <Container maxWidth="lg" className='customers'
-        >
-            <div>
+        <Container maxWidth="lg" className='customers'>
+            {/* change */}
+            <div className='customer-feedback'>
                 <h2>Customer Feedback</h2>
                 <div>
-                <FormControl className='formControll' sx={{ m: 1, minWidth: 160}}>
+                <FormControl className='formControll' 
+                 sx={{
+                    m: 1,
+                    width: {
+                      xs: 130, // fit content on extra-small (mobile) screens
+                      sm: 160,           // fixed width on small and up
+                    },
+                    minWidth: 0,          // override default minWidth behavior on small screens
+                  }}
+                >
                     <InputLabel id="demo-simple-select-label">
                         <FilterAltIcon sx={{ mr: 1 }} />
                     </InputLabel>
