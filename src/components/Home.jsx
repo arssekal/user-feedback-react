@@ -30,7 +30,7 @@ function Home() {
 
     <Stack spacing={2} className='stack' style={{display: showLoginAdin? "none": null}}>
         <div>
-            <h1>Give Us Your 
+            <h1 className='give-feedback'>Give Us Your 
                 <TypingSpan text={"Feedback!"}/>
             </h1>
             <p style={{fontWeight:'bold' }}>We value your opinion and want to hear from you.</p>
