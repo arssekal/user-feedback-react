@@ -198,7 +198,8 @@ function Admindashboard() {
         </Container>
         <Container maxWidth="lg" className='cardholder'>
             <div className='welcome'>
-                <h1>Welcome back, Admin! 👋</h1>
+                {/* change */}
+                <h1>Welcome back, Admin! <span className="wave">👋</span></h1>
                 <p>Here's what's happening with your customer feedback today.</p>
             </div>
             <div className='cards'>
