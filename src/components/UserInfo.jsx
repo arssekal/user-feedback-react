@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { motion } from "motion/react";
 import { UserInformationContext } from '../contexts/userInfoInfo';
 import { useNavigate } from 'react-router-dom';
+import {createUserFeedback} from '../services/userFeedbackService'
 
 function UserInfo() {
   const {userInformations, setUserInformations} = useContext(UserInformationContext)
@@ -47,8 +48,15 @@ function UserInfo() {
     } 
     // go to the final page after submission
     localStorage.setItem("userData", JSON.stringify(userInformations))
-    navigate("/thankyou");
-    console.log(userInformations)
+    createUserFeedback(userInformations)
+    .then(response => {
+      console.log("Feedback saved:", response.data);
+      navigate("/thankyou");
+    })
+    .catch(error => {
+      console.error("Error saving feedback:", error);
+      alert("There was an error saving your feedback. Please try again later.");
+    });
   }
 
   function handleNameChange(e) {
