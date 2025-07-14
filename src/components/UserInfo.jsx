@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { motion } from "motion/react";
 import { UserInformationContext } from '../contexts/userInfoInfo';
 import { useNavigate } from 'react-router-dom';
-import { createUserFeedback } from '../services/userFeedbackService';
 
 function UserInfo() {
   const {userInformations, setUserInformations} = useContext(UserInformationContext)
@@ -23,37 +22,33 @@ function UserInfo() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    console.log("handling btn click")
+    
     const isInvalid =
       userInformations.name.trim() === "" ||
       userInformations.email.trim() === "" ||
       userInformations.phone.trim() === "";
     
     const phoneRegex = /^(?:\+212|0)([5-7]\d{8})$/;
-
     const isValid = phoneRegex.test(userInformations.phone.trim())
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const isValid2 = emailRegex.test(userInformations.email)
 
     setFormValidation({
       isNameValid: userInformations.name.trim() !== "",
-      isEmailValid: userInformations.email.trim() !== "",
+      isEmailValid: isValid2,
       isPhoneValid: isValid,
     })
 
-    if(isInvalid || !isValid) {
+    if(isInvalid || !isValid || !isValid2) {
       setShakeKey((prev) => prev+1)
       return;
     } 
-    
-    setUserInformations(userInformations)
+    // go to the final page after submission
     localStorage.setItem("userData", JSON.stringify(userInformations))
+    navigate("/thankyou");
     console.log(userInformations)
-    // here we add to the database
-    createUserFeedback(userInformations).then((response) => {
-      console.log(response.data);
-      navigate("/thankyou");
-    }).catch((error) => {
-      console.log(error)
-      console.log("===========")
-    })
   }
 
   function handleNameChange(e) {
@@ -66,7 +61,6 @@ function UserInfo() {
   function handleEmailChange(e) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isValid = emailRegex.test(e.target.value)
-    console.log("email valid: ", isValid)
     setFormValidation({
       ...formValidation, isEmailValid: isValid
     })
@@ -118,7 +112,7 @@ function UserInfo() {
                   fullWidth
                   id="outlined-error"
                   label="name"
-                  value={userInformations.name === "xxxx" ? "" : userInformations.name}
+                  value={userInformations.name === "xxxx" ? "": userInformations.name}
                   onChange={(e)=> {
                     handleNameChange(e)
                   }}
@@ -138,7 +132,7 @@ function UserInfo() {
                   id="outlined-error"
                   label="email"
                   type='email'
-                  value={userInformations.email === "xxxx" ? "" : userInformations.email}
+                  value={userInformations.email === "xxxx" ? "": userInformations.email}
                   onChange={(e)=> {
                     handleEmailChange(e)
                   }}
@@ -157,7 +151,7 @@ function UserInfo() {
                   fullWidth
                   id="outlined-error"
                   label="phone"
-                  value={userInformations.phone === "xxxx" ? "" : userInformations.phone}
+                  value={userInformations.phone === "xxxx" ? "": userInformations.phone}
                   // i have to check if the phone number is a valid one
                   onChange={(e)=> {
                     handlePhoneChange(e)

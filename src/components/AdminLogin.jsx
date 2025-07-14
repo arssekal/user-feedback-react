@@ -56,24 +56,24 @@ const modal = {
 };
   return (
     <motion.div
-    className="login-overlay"
-    variants={backdrop}
-    initial="hidden"
-    animate="visible"
-    exit="hidden"
-    style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: 'rgba(0,0,0,0.4)',
-      zIndex: 2,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
+      className="login-overlay"
+      variants={backdrop}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        zIndex: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
     <motion.div
       variants={modal}
       initial="hidden"
@@ -81,20 +81,20 @@ const modal = {
       exit="exit"
       style={{ width: '100%', maxWidth: 500 }}
     >
-  <Container maxWidth={false}
-  className='login-form'
-  /* cahnge */
-  sx={{
-    width: {
-      xs: 'calc(100% - 30px)', 
-      sm: '600px',
-    },
-    mx: {
-      xs: '15px',
-      sm: 'auto',
-    },
-  }}
-  >
+    <Container maxWidth={false}
+    className='login-form'
+    /* cahnge */
+    sx={{
+      width: {
+        xs: 'calc(100% - 30px)', 
+        sm: '600px',
+      },
+      mx: {
+        xs: '15px',
+        sm: 'auto',
+      },
+    }}
+    >
       <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

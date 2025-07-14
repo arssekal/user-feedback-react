@@ -100,12 +100,18 @@ function EmojiRatingPage() {
   const navigate = useNavigate();
   
   const { userInformations, setUserInformations } = useContext(UserInformationContext);
+
+  // change
   
-  useEffect(()=> {
-    const storedData = JSON.parse(localStorage.getItem("userData"))
-    if(storedData) {
-      setUserInformations(storedData)
-    }
+  useEffect(() => {
+      setUserInformations({
+        satisfaction: "xxxx",
+        heardAbout: "xxxx",
+        name: "xxxx",
+        email: "xxxx",
+        phone: "xxxx",
+        date: ""
+    })
   }, [setUserInformations])
 
   const handleClick = () => {
@@ -119,6 +125,7 @@ function EmojiRatingPage() {
       'Terrible',
     ];
 
+    // change
     const now = new Date();
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0'); 

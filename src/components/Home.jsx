@@ -1,6 +1,5 @@
 import React from 'react'
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import '../styleComponents/homeStyle.css'
 import Stack from '@mui/material/Stack';
 import { motion } from 'framer-motion';
@@ -11,65 +10,60 @@ import AdminLogin from './AdminLogin';
 
 function Home() {
   const navigate = useNavigate()
-  const [showLoginAdin, setShowLoginAdmin] = useState(false)
+  const [showLoginAdin, setShowLoginAdmin] = useState(false)  // Toggles AdminLogin visibility
 
   function handleFeedbackClick() {
     navigate("/rating")
   }
   return (
-  <>
+  <div className='pagecontainer'>
   {showLoginAdin && <AdminLogin/>}
   <Container maxWidth="sm">
-    <Button variant="contained" className='admin'
-    style={{
-      position: "absolute",
-      top: "20px",
-      right: "20px",
-      backgroundColor: "white",
-      color: "black",
-      border: "1px solid rgb(74 144 226)",
-      transition: "all 0.3s",
-      zIndex: 3,
-    }}
-    onClick={() => {
-      setShowLoginAdmin(!showLoginAdin)
-    }}
-    >Admin Login</Button>
+
+    {/* Admin login button at top-right corner */}
+      <button className='admin'
+      onClick={() => {
+        setShowLoginAdmin(!showLoginAdin)  // Toggle admin login popup
+      }}
+      >Admin Login</button>
+
+
     <Stack spacing={2} className='stack' style={{display: showLoginAdin? "none": null}}>
         <div>
             <h1>Give Us Your 
                 <TypingSpan text={"Feedback!"}/>
             </h1>
-            <p>We value your opinion and want to hear from you.</p>
+            <p style={{fontWeight:'bold' }}>We value your opinion and want to hear from you.</p>
         </div>
-        <Button variant="outlined"
+        <button  
+        className='buttonfeedback'
         onClick={() => {
-          handleFeedbackClick()
+          handleFeedbackClick()  // Go to /rating page
         }}
         >
             <span>
-            <ChatBubbleOutlineIcon className='icon'/>
-            Give Feedback
+              <ChatBubbleOutlineIcon className='icon'/>
+              Give Feedback
             </span>
-        </Button>
+        </button>
     </Stack>
   </Container>
-  </>
+  </div>
   )
 }
 
 const TypingSpan = ({ text }) => {
-    const [displayedCount, setDisplayedCount] = useState(0);
+    const [displayedCount, setDisplayedCount] = useState(0);  // Tracks number of visible characters
   
     useEffect(() => {
       let timeout;
       if (displayedCount < text.length) {
-        timeout = setTimeout(() => setDisplayedCount(displayedCount + 1), 150);
+        timeout = setTimeout(() => setDisplayedCount(displayedCount + 1), 150); // Typing speed
       } else {
         // Restart after full text shown with a pause
         timeout = setTimeout(() => setDisplayedCount(0), 1500);
       }
-      return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout); // Cleanup
     }, [displayedCount, text.length]);
   
     return (
@@ -77,11 +71,17 @@ const TypingSpan = ({ text }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        style={{ display: "inline-block", whiteSpace: "pre" }}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          fontFamily: "inherit", // match parent font
+          fontSize: "inherit",   // match parent size
+          marginLeft: "5px",     // optional space before typing
+        }}
       >
-        {text.slice(0, displayedCount)}
+        {text.slice(0, displayedCount)}  {/* Only show part of the text */}
         <motion.span
-          animate={{ opacity: [0, 1, 0] }}
+          animate={{ opacity: [0, 1, 0] }} // Cursor blinking
           transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
           style={{ display: "inline-block" }}
         >

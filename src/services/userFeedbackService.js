@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const REST_API_BASE_URL = "https://your-railway-app.up.railway.app/api/feedbacks";
 const REST_API_BASE_URL = "https://user-feedback-spring-production-15e3.up.railway.app/api/feedbacks";
 
 export const listUserFeedbacks = () => {
