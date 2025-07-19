@@ -22,15 +22,13 @@ function UserInfo() {
   }); 
 
   useEffect(() => {
-    setUserInformations(
-      {
-        ...userInformations,
-        name: userInformations.name === "xxxx" ? "": userInformations.name,
-        email: userInformations.email === "xxxx" ? "": userInformations.email,
-        phone: userInformations.phone === "xxxx" ? "": userInformations.phone,
-      }
-    )
-  }, [setUserInformations, userInformations])
+    setUserInformations((prev) => ({
+        ...prev,
+        name: prev.name === "xxxx" ? "": prev.name,
+        email: prev.email === "xxxx" ? "": prev.email,
+        phone: prev.phone === "xxxx" ? "": prev.phone,
+      }))
+  }, [setUserInformations])
 
   const navigate = useNavigate();
   useEffect(() => {
