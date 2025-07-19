@@ -90,7 +90,8 @@ function Admindashboard() {
   function getAllFeedbacks() {
     listUserFeedbacks().then((response) => {
         console.log(response.data)
-        setAllFeedbacks(response.data)
+        const feedbackClients = response.data.reverse();
+        setAllFeedbacks(feedbackClients)
     }).catch((error) => {
         console.log(error)
     })
@@ -99,13 +100,6 @@ function Admindashboard() {
   const handleChange = (event) => {
     setType(event.target.value);
   };
-   /*
-  'Very Satisfying',
-      'Good',
-      'Neutral',
-      'Not what I expected',
-      'Terrible',
-    */
 
   const filteredFeedback = () => {
     if(type === "all") return allFeedbacks;
@@ -306,7 +300,15 @@ function Admindashboard() {
                                 >{row.satisfaction}</span>
                             </TableCell>
                             <TableCell align="left">{row.heardAbout}</TableCell>
-                            <TableCell align="left">{row.date}</TableCell>
+                            {/* <TableCell align="left">{row.date}</TableCell> */}
+                            <TableCell align="left">
+                            <>
+                                <div>{new Date(row.date).toLocaleDateString()}</div>
+                                <div style={{ fontSize: '0.75rem', color: '#6b7280' }}>
+                                {new Date(row.date).toLocaleTimeString()}
+                                </div>
+                            </>
+                            </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

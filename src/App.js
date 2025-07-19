@@ -18,15 +18,17 @@ const informations = {
   name: "xxxx",
   email: "xxxx",
   phone: "xxxx",
-  date: ""
+  date: new Date()
+  // date: ""
 }
 
 
 function App() {
   const [userInformations, setUserInformations] = useState(informations)
+  const [step, setStep] = useState(0)
 
   return (
-    <UserInformationContext.Provider value={{userInformations, setUserInformations}}>
+    <UserInformationContext.Provider value={{userInformations, setUserInformations, step, setStep}}>
     <div className="App">
       <div className='container'>
         <Routes>

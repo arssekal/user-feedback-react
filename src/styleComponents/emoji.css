@@ -4,8 +4,9 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87); */
+  color: black;
+  /* background-color: white; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,7 +20,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../../public/background2.jpg');
+  /* background-image: url('../../public/background2.jpg'); */
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -28,16 +30,17 @@
   overflow-y: auto;
 }
 
-.pagewraper::before {
+/* .pagewraper::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.774);
+  /* background-color: rgba(0, 0, 0, 0.774); */ /*
+  background-color: white;
   z-index: -1;
-}
+} */
 
 /* Title */
 .titletext {
@@ -47,15 +50,15 @@
   margin: clamp(2rem, 10vh, 4rem) auto 1rem auto;
   padding-top: env(safe-area-inset-top, 0);
   font-family: 'Fontdiner Swanky', cursive;
-background: linear-gradient(270deg,
-  #ad4c06 0%,    
-  #ff7300 10%,  
-  #e09421 18%,   
-  #ccffcc 28%,    
-  #ff9800 90%,   
-  #ff6a00 100%    
-);
- background-size: 600% 600%;
+  background: linear-gradient(270deg,
+    #ad4c06 0%,    
+    #ff7300 10%,  
+    #e09421 18%,   
+    #ccffcc 28%,    
+    #ff9800 90%,   
+    #ff6a00 100%    
+  );
+  background-size: 600% 600%;
   animation: fadeSlideDown 1s ease-out forwards, gradientMove 8s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -70,6 +73,7 @@ background: linear-gradient(270deg,
   width: 100%;
   box-sizing: border-box;
   max-width: 1300px;
+  margin-top: 0px;
 }
 
 @supports not (-webkit-background-clip: text) {
@@ -101,7 +105,7 @@ background: linear-gradient(270deg,
   padding: clamp(0.8rem, 1.2vw, 1.5rem);
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(75, 137, 209, 0.2);
-  background: linear-gradient(145deg, rgba(245, 217, 141, 0.301), rgba(255, 236, 185, 0.151));
+  background: linear-gradient(145deg, rgba(245, 217, 141, 0.959), rgba(255, 236, 185, 0.151));
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   width: 180px;
   min-height: 260px; /* fixed min height for all cards */
@@ -112,12 +116,13 @@ background: linear-gradient(270deg,
   margin: 0;
   position: relative;
   overflow: hidden;
+  border: 1px solid #777;
 }
 
 /* Selected card styles */
 .emoji-card.selected {
   transform: scale(1.05);
-  box-shadow: 0 0 25px 8px rgba(31, 32, 6, 0.445); 
+  /* box-shadow: 0 0 25px 8px rgba(31, 32, 6, 0.445);  */
   background: linear-gradient(145deg, rgba(255, 172, 116, 0.918), rgba(241, 152, 92, 0.658)); 
   z-index: 10;
   transition: all 0.3s ease;
@@ -140,7 +145,7 @@ background: linear-gradient(270deg,
   font-size: clamp(0.9rem, 1.6vw, 1.15rem);
   font-weight: 700;
   line-height: 1.4;
-  color: white;
+  color: black;
   text-align: center;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -188,6 +193,7 @@ background: linear-gradient(270deg,
   width: auto;
   max-width: 100%;
   box-sizing: border-box;
+  margin-bottom: 50px;
 }
 
 .buttonnext:hover {

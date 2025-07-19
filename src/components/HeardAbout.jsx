@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import '../styleComponents/heardAboutStyle.css'
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -12,11 +12,16 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { UserInformationContext } from '../contexts/userInfoInfo';
+import StepProgressBar from './StepProgressBar';
 
 function HeardAbout() {
   const navigate = useNavigate()
-  const {userInformations, setUserInformations} = useContext(UserInformationContext)
+  // change
+  const {userInformations, setUserInformations, step , setStep} = useContext(UserInformationContext)
   
+  useEffect(() => {
+    setStep(1)
+  }, [])
 
   function  handleNextClick() {
     let heardAboutusFrom = "";
@@ -51,11 +56,13 @@ function HeardAbout() {
   }
   const [selected, setSelected] = useState('');
   return (
+    <>
+        <StepProgressBar step={step}/>
         <Container maxWidth="sm" className='about'
         sx={{
             mx: {
-              xs: '15px',
-              sm: 'auto',
+                xs: '15px',
+                sm: 'auto',
             },
         }}
         >
@@ -69,7 +76,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("google")
                     }
-                    }
+                }
                 >
                     <div>
                         <SearchIcon className='icon'/>
@@ -82,7 +89,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("instagram")
                     }
-                    }
+                }
                 >
                     <div>
                         <InstagramIcon className='icon'/>
@@ -95,7 +102,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("facebook")
                     }
-                    }
+                }
                 >
                     <div>
                         <FacebookIcon className='icon'/>
@@ -108,7 +115,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("freind")
                     }
-                    }
+                }
                 >
                     <div>
                         <Diversity3Icon className='icon'/>
@@ -121,7 +128,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("tv")
                     }
-                    }
+                }
                 >
                     <div>
                         <LiveTvIcon className='icon'/>
@@ -134,7 +141,7 @@ function HeardAbout() {
                     onClick={() => {
                         setSelected("other")
                     }
-                    }
+                }
                 >
                     <div>
                         <DoNotDisturbIcon className='icon'/>
@@ -153,8 +160,8 @@ function HeardAbout() {
                         backgroundColor: selected !== "" ? 'rgba(240, 115, 32, 0.58)' : 'rgba(250, 235, 225, 0.58)',
                         boxShadow: selected !== "" ? '0 0 10px rgba(43, 35, 31, 0.62)' : 'none',
                         '&:hover': {
-                        borderColor: 'white',
-                        backgroundColor: selected !== "" ? 'rgba(240, 115, 32, 0.75)' : 'rgba(250, 235, 225, 0.7)',
+                            borderColor: 'white',
+                            backgroundColor: selected !== "" ? 'rgba(240, 115, 32, 0.75)' : 'rgba(250, 235, 225, 0.7)',
                         },
                     }}
                     variant="outlined"
@@ -169,6 +176,7 @@ function HeardAbout() {
 
             </Container>
         </Container>
+    </>
   )
 }
 

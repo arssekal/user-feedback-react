@@ -10,13 +10,14 @@ import Container from '@mui/material/Container';
 const FeedbackSummary = () => {
     
   const navigate = useNavigate();
-  const { userInformations, setUserInformations } = useContext(UserInformationContext);
+  const { userInformations, setUserInformations} = useContext(UserInformationContext);
   useEffect(()=> {
     const storedData = JSON.parse(localStorage.getItem("userData"))
     if(storedData) {
       setUserInformations(storedData)
     }
   }, [setUserInformations])
+
   
   // ✅ This will take the user to /rating
   const handleSubmitAnother = () => {

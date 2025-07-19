@@ -1,6 +1,5 @@
 /* Container */
 .feedback-container {
-  min-height: 100vh;
   background-color: #f9fafb;
   padding: 2rem 1rem;
   width: 100%;
@@ -10,7 +9,7 @@
 }
 
 .feedback-wrapper {
-  margin-top: 150px;
+  margin-top: 30px;
 }
 
 /* Card */

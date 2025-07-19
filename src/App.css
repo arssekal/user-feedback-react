@@ -2,20 +2,27 @@
     margin: 0;
     box-sizing: border-box;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
 .container {
   width: 100%;
   background-color: #f5f7fa;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
   box-sizing: border-box;
-  background-image: url('../public/background2.jpg');
+  /* background-image: url('../public/background2.jpg'); */
   background-size: cover;      
   background-position: center; 
   background-repeat: no-repeat;
   width: 100vw;                
-  height: 100vh; 
+  /* height: 100vh;  */
   position: relative;
+  overflow-x: hidden;
 }

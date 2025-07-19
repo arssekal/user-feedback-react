@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
@@ -8,9 +8,11 @@ import { motion } from "motion/react";
 import { UserInformationContext } from '../contexts/userInfoInfo';
 import { useNavigate } from 'react-router-dom';
 import {createUserFeedback} from '../services/userFeedbackService'
+import StepProgressBar from './StepProgressBar';
+
 
 function UserInfo() {
-  const {userInformations, setUserInformations} = useContext(UserInformationContext)
+  const {userInformations, setUserInformations, step, setStep} = useContext(UserInformationContext)
   
   const [shakeKey, setShakeKey] = useState(0); 
   const [formValidation, setFormValidation] = useState({
@@ -19,16 +21,25 @@ function UserInfo() {
     isPhoneValid: true,
   }); 
 
+  useEffect(() => {
+    setUserInformations(
+      {
+        ...userInformations,
+        name: userInformations.name === "xxxx" ? "": userInformations.name,
+        email: userInformations.email === "xxxx" ? "": userInformations.email,
+        phone: userInformations.phone === "xxxx" ? "": userInformations.phone,
+      }
+    )
+  }, [])
+
   const navigate = useNavigate();
+  useEffect(() => {
+    setStep(2)
+  }, [setStep])
 
   function handleSubmit(e) {
     e.preventDefault()
     console.log("handling btn click")
-    
-    const isInvalid =
-      userInformations.name.trim() === "" ||
-      userInformations.email.trim() === "" ||
-      userInformations.phone.trim() === "";
     
     const phoneRegex = /^(?:\+212|0)([5-7]\d{8})$/;
     const isValid = phoneRegex.test(userInformations.phone.trim())
@@ -36,18 +47,24 @@ function UserInfo() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const isValid2 = emailRegex.test(userInformations.email)
 
+    const isInvalid =
+      userInformations.name.trim() === "" ||
+      !isValid ||
+      !isValid2 ;
+
     setFormValidation({
       isNameValid: userInformations.name.trim() !== "",
       isEmailValid: isValid2,
       isPhoneValid: isValid,
     })
-
-    if(isInvalid || !isValid || !isValid2) {
+    
+    if(isInvalid) {
       setShakeKey((prev) => prev+1)
       return;
     } 
     // go to the final page after submission
     localStorage.setItem("userData", JSON.stringify(userInformations))
+    setStep(3)
     createUserFeedback(userInformations)
     .then(response => {
       console.log("Feedback saved:", response.data);
@@ -87,6 +104,7 @@ function UserInfo() {
   return (
     <div className='pagewraper2'>
     <div className='formHolder'>
+      <StepProgressBar step={step}/>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

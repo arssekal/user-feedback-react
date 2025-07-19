@@ -1,0 +1,43 @@
+.stepper {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+.slider {
+    height: 10px;
+}
+  
+  /* Step label text */
+  .MuiStepLabel-label {
+    color: #444;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  /* Active step */
+  .MuiStepLabel-label.Mui-active {
+    color: #1976d2 !important;
+    font-weight: bold;
+  }
+  
+  /* Completed step */
+  .MuiStepLabel-label.Mui-completed {
+    color: #4caf50 !important;
+  }
+  
+  /* Step icon (circle) */
+  .MuiStepIcon-root {
+    color: #ccc; /* default */
+  }
+  
+  .MuiStepIcon-root.Mui-active {
+    color: #1976d2;
+  }
+  
+  .MuiStepIcon-root.Mui-completed {
+    color: #4caf50;
+  }
+  

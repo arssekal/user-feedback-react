@@ -4,6 +4,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import '../styleComponents/emoji.css';
 import { useNavigate } from 'react-router-dom';
 import { UserInformationContext } from '../contexts/userInfoInfo';
+import StepProgressBar from './StepProgressBar'
 
 function EmojiCard({ text, src, isSelected, onClick }) {
   const playerRef = useRef(null);
@@ -99,7 +100,7 @@ function EmojiRatingPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   
-  const { userInformations, setUserInformations } = useContext(UserInformationContext);
+  const { userInformations, setUserInformations, step, setStep } = useContext(UserInformationContext);
 
   // change
   
@@ -112,7 +113,8 @@ function EmojiRatingPage() {
         phone: "xxxx",
         date: ""
     })
-  }, [setUserInformations])
+    setStep(0)
+  }, [setUserInformations, setStep])
 
   const handleClick = () => {
     setLoading(true);
@@ -126,17 +128,17 @@ function EmojiRatingPage() {
     ];
 
     // change
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); 
-    const day = String(now.getDate()).padStart(2, '0');
+    // const now = new Date();
+    // const year = now.getFullYear();
+    // const month = String(now.getMonth() + 1).padStart(2, '0'); 
+    // const day = String(now.getDate()).padStart(2, '0');
 
-    const formattedDate = `${year}/${month}/${day}`;
+    // const formattedDate = `${year}/${month}/${day}`;
 
     const updatedInfo = {
       ...userInformations,
       satisfaction: satisfactionLevels[selectedIndex],
-      date: formattedDate
+      date: new Date()
     };
 
     setUserInformations(updatedInfo);
@@ -149,6 +151,7 @@ function EmojiRatingPage() {
 
   return (
     <div className='pagewraper'>
+      <StepProgressBar step={step}/>
       <h1 className='titletext'>Provide us with your level of satisfaction from our service</h1>
       <div className='emojicontainer'>
         <EmojiRating selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
