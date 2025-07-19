@@ -30,7 +30,7 @@ function UserInfo() {
         phone: userInformations.phone === "xxxx" ? "": userInformations.phone,
       }
     )
-  }, [setUserInformations])
+  }, [setUserInformations, userInformations])
 
   const navigate = useNavigate();
   useEffect(() => {
