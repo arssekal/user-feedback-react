@@ -21,7 +21,7 @@ function HeardAbout() {
   
   useEffect(() => {
     setStep(1)
-  }, [])
+  }, [setStep])
 
   function  handleNextClick() {
     let heardAboutusFrom = "";
