@@ -1,4 +1,5 @@
 import * as React from 'react';
+// material ui elements
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,20 +11,21 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToDo from './ToDo';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
-import { useContext, useEffect, useMemo } from 'react';
-// context
-import { TodosContext } from '../contexts/todosContext';
-import { AlertContext } from '../contexts/alertContext';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+// context
+import { useState , useEffect, useMemo } from 'react';
+import { useTodos } from '../contexts/todosContext';
+import { useAlert } from '../contexts/alertContext';
 
 export default function ToDoList() {
-  const {todos, setTodos} = useContext(TodosContext)
-  const {showHideTostAlert} = useContext(AlertContext)
+  // reducer
+  const {todos, dispatch} = useTodos()
+
+  const {showHideTostAlert} = useAlert()
 
   const [titleInput, setTitleInput] = useState("")
   const [whatToShow, setWhatToShow] = useState("all") // "all" "done" "notDone"
@@ -36,8 +38,8 @@ export default function ToDoList() {
     { 
      title: "",
      description: ""
-    }) 
-
+    }
+  ) 
  
 
   // filterd todo lost
@@ -62,9 +64,7 @@ export default function ToDoList() {
   })
 
   useEffect(() => {
-    let todosFromStorage = JSON.parse(localStorage.getItem("todos"))
-    if(!todosFromStorage) todosFromStorage = []
-    setTodos(todosFromStorage)
+    dispatch({type: "refrech"})
   }, [])
 
   const togllButtonStyle = {
@@ -74,22 +74,7 @@ export default function ToDoList() {
 
   // handlers
   function handleAddClick() {
-    if(!titleInput.trim()) {
-      return
-    }
-  
-    const updatedTodos = [
-      ...todos,
-      {
-        id: todos.length + 1,
-        title: titleInput,
-        description: "no description yet",
-        isCompleted: false
-      }
-    ]
-
-    setTodos(updatedTodos)
-    localStorage.setItem("todos", JSON.stringify(updatedTodos))
+    dispatch({type: "add",payload: {title: titleInput}})
     setTitleInput("")
     showHideTostAlert("task added succesfully")
   }
@@ -112,21 +97,14 @@ export default function ToDoList() {
   }
   // her i have to show an alert of deletion done successfully
   function handleDeleteConfirm() {
+    dispatch({type: "delete",payload: todoDeleted})
     setShowDeleteAlert(false)
-    const newTodos = todos.filter((t) => t.id !== todoDeleted.id) // todos without the deleted one
-    setTodos(newTodos)
-    localStorage.setItem("todos", JSON.stringify(newTodos))
     showHideTostAlert("task deleted successfully!")
   }
   // her i have to show an alert of deletion done successfully
   function handleUpdateClick() {
+    dispatch({type: "update",payload: updateTask})
     setShowUpdateAlert(false)
-    const updatedTodos = todos.map((t) => {
-      if(t.id === updateTask.id) return updateTask
-      return t;
-    })
-    setTodos(updatedTodos)
-    localStorage.setItem("todos", JSON.stringify(updatedTodos))
     showHideTostAlert("task updated successfully!")
   }
 
